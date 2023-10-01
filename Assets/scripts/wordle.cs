@@ -25,10 +25,7 @@ public class wordle : MonoBehaviour
     [SerializeField]
     private Row[] _rows;
 
-    [SerializeField]
-    private Row _Row;
 
-    
 
 
     [SerializeField]
