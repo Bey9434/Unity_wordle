@@ -66,8 +66,10 @@ public class wordle : MonoBehaviour
         if (_blockInput) return;
 
         _text = _inputField.text;
+        if (!_wordList.words.Contains(_text)) return;//wordsの要素内の単語以外の文字列をはじく。
         _text = _text.ToUpper();
-        
+       
+
         if (_text.Length < 5)
         {
             Debug.Log("5文字の単語も打てねえのか");
