@@ -851,9 +851,9 @@ MonoBehaviour:
   _textAnswer: 
   k: 0
   _rows: []
-  _Row: {fileID: 0}
   _correct: 0
   _trycount: 0
+  _EnglishListFile: {fileID: 4900000, guid: 1f30ec9f81084494db7554e16a254c8c, type: 3}
 --- !u!1001 &1231293711
 PrefabInstance:
   m_ObjectHideFlags: 0

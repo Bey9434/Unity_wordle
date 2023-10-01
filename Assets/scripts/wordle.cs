@@ -5,9 +5,6 @@ using TMPro;
 using UnityEngine.TextCore.Text;
 
 
-
-
-
 public class wordle : MonoBehaviour
 {
     [SerializeField]
@@ -25,9 +22,6 @@ public class wordle : MonoBehaviour
     [SerializeField]
     private Row[] _rows;
 
-
-
-
     [SerializeField]
     private int _correct;
 
@@ -36,39 +30,41 @@ public class wordle : MonoBehaviour
     private int _maxtrycount;
     private int _correctcount;
 
-
-
-    // Start is called before the first frame update
-
-
-
-    void Start()
-
+    [System.Serializable]   //Json形式のファイルを読み込み
+    private class Wordlist  //Json形式のデータを格納するためのデータ構造を定義
     {
-        _textAnswer = "UHAGE";
-        _maxtrycount = _rows.Length;
-
-        
+        public List<string> words; //_EnglishListFileのなかで定義しているwordsという英単語の名前空間をString型のListとして扱う
     }
+
+    [SerializeField]
+    private UnityEngine.TextAsset _EnglishListFile;//EnglishList.jsonをアタッチ。UnityRngine.TextAsset型の変数。Jsonやtxtファイルを扱うことができる
+    private Wordlist _wordList;
+    private int _randomlist;
+    private int _randomcount;
+
+    [SerializeField]
+    private bool _blockInput = false;
+
 
     private void Awake()
     {
-
         _rows = GetComponentsInChildren<Row>();
-        
-        
-
+        _maxtrycount = _rows.Length;
+        LoadJson();
+        GameReset();
     }
-
-
-    // Update is called once per frame
-    void Update()
+    private void LoadJson()
     {
-
+        _wordList = JsonUtility.FromJson<Wordlist>(_EnglishListFile.text);
+        //EnglishListFile.textをWordlist型に定義している。
+        //JsonUtility.FromJsonは、Unityの標準機能で、JSON形式の文字列を指定した型のオブジェクトに変換するもの。
+        _randomcount = _wordList.words.Count;
     }
 
     public void OnInputEnded()
     {
+        if (_blockInput) return;
+
         _text = _inputField.text;
         _text = _text.ToUpper();
         
@@ -139,6 +135,7 @@ public class wordle : MonoBehaviour
 
     private void GameOver()
     {
+        _blockInput = true;
         _trycount = 0;
         _correctcount = 0;
         Invoke("GameReset", 3.0f); //3秒後にGameResetを呼び出す。
@@ -147,8 +144,10 @@ public class wordle : MonoBehaviour
 
     private void GameReset()
     {
-
+        _blockInput = false;
         foreach (Row row in _rows) row.GameReset();　//Rowというオブジェクトの属性を帯びたrowという文字定義し_rowsの配列の各要素をループさせる。
+        int index = Random.Range(0, _randomcount);
+        _textAnswer = _wordList.words[index].ToUpper();
 
     }
 
