@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.TextCore.Text;
-
+using UnityEngine.UI;
 
 public class wordle : MonoBehaviour
 {
     [SerializeField]
     private TMP_InputField _inputField;
+
+    [SerializeField]
+    private TMPro.TextMeshProUGUI _AnswerResult;
 
     [SerializeField]
     private string _text;
@@ -61,11 +64,22 @@ public class wordle : MonoBehaviour
         _randomcount = _wordList.words.Count;
     }
 
+    void Update()
+    {
+        if (!_inputField.isFocused)
+        {
+            _inputField.Select();
+            _inputField.ActivateInputField();
+        }
+    }
+
     public void OnInputEnded()
     {
         if (_blockInput) return;
 
         _text = _inputField.text;
+        _inputField.text = "";
+
         if (!_wordList.words.Contains(_text)) return;//wordsの要素内の単語以外の文字列をはじく。
         _text = _text.ToUpper();
        
@@ -111,6 +125,7 @@ public class wordle : MonoBehaviour
         }
 
         _trycount++;
+        
 
 
         if (_maxtrycount > _trycount && _correctcount < 5)
@@ -140,6 +155,7 @@ public class wordle : MonoBehaviour
         _blockInput = true;
         _trycount = 0;
         _correctcount = 0;
+        _AnswerResult.text = "Answer:"+ _textAnswer;
         Invoke("GameReset", 3.0f); //3秒後にGameResetを呼び出す。
     
     }
@@ -147,6 +163,7 @@ public class wordle : MonoBehaviour
     private void GameReset()
     {
         _blockInput = false;
+        _AnswerResult.text = "";
         foreach (Row row in _rows) row.GameReset();　//Rowというオブジェクトの属性を帯びたrowという文字定義し_rowsの配列の各要素をループさせる。
         int index = Random.Range(0, _randomcount);
         _textAnswer = _wordList.words[index].ToUpper();
