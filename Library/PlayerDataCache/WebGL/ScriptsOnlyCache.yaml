@@ -1194,4 +1194,4 @@ ScriptsOnlyBuild:
   platform: 20
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/Tuyug/Desktop/wordle
+  playerPath: C:/Users/Tuyug/source/repos/Unity__wordle/WebGL
