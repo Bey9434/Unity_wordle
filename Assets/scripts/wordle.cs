@@ -64,14 +64,14 @@ public class wordle : MonoBehaviour
         _randomcount = _wordList.words.Count;
     }
 
-    /*void Update()
+   void Update()
     {
         if (!_inputField.isFocused)
         {
             _inputField.Select();
             _inputField.ActivateInputField();
         }
-    }*/
+    }
 
     public void OnInputEnded()
     {
