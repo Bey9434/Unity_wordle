@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - Row
+    - WebGLSupport.WebGLInput
     - wordle
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -25,6 +26,7 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.GridLayoutGroup
@@ -64,6 +66,7 @@ ScriptsOnlyBuild:
     - UnityEngine.TextCore.GlyphRect
     UnityEngine.UI:
     - UnityEngine.UI.AnimationTriggers
+    - UnityEngine.UI.Button/ButtonClickedEvent
     - UnityEngine.UI.ColorBlock
     - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
     - UnityEngine.UI.Navigation
@@ -101,35 +104,39 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1712}
     - Class: 114
-      Script: {instanceID: 2170}
+      Script: {instanceID: 1880}
     - Class: 114
-      Script: {instanceID: 2584}
+      Script: {instanceID: 2176}
     - Class: 114
-      Script: {instanceID: 2784}
+      Script: {instanceID: 2590}
     - Class: 114
-      Script: {instanceID: 3940}
+      Script: {instanceID: 2790}
     - Class: 114
-      Script: {instanceID: 4034}
+      Script: {instanceID: 3072}
     - Class: 114
-      Script: {instanceID: 4048}
+      Script: {instanceID: 3948}
     - Class: 114
-      Script: {instanceID: 4296}
+      Script: {instanceID: 4042}
     - Class: 114
-      Script: {instanceID: 4680}
+      Script: {instanceID: 4058}
     - Class: 114
-      Script: {instanceID: 4816}
+      Script: {instanceID: 4308}
     - Class: 114
-      Script: {instanceID: 4996}
+      Script: {instanceID: 4694}
     - Class: 114
-      Script: {instanceID: 5436}
+      Script: {instanceID: 4830}
     - Class: 114
-      Script: {instanceID: 5542}
+      Script: {instanceID: 5010}
     - Class: 114
-      Script: {instanceID: 5690}
+      Script: {instanceID: 5450}
     - Class: 114
-      Script: {instanceID: 6002}
+      Script: {instanceID: 5556}
     - Class: 114
-      Script: {instanceID: 7218}
+      Script: {instanceID: 5706}
+    - Class: 114
+      Script: {instanceID: 6018}
+    - Class: 114
+      Script: {instanceID: 7236}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -219,6 +226,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: TMPro.Examples
     className: SimpleScript
+  - hash:
+      serializedVersion: 2
+      Hash: 9bee67efebc427ec5034962061b2c0c7
+    assemblyName: Assembly-CSharp
+    namespaceName: WebGLSupport
+    className: WebGLInput
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -990,6 +1003,12 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: WebGLSupport
+    className: WebGLInputMobile
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: PositionAsUV1
@@ -1191,7 +1210,13 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: NewBehaviourScript
   platform: 20
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/Tuyug/source/repos/Unity__wordle/WebGL
+  playerPath: C:/Users/Tuyug/Desktop/test
