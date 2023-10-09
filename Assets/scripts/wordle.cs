@@ -127,7 +127,6 @@ public class wordle : MonoBehaviour
         _trycount++;
         
 
-
         if (_maxtrycount > _trycount && _correctcount < 5)
         {
             
