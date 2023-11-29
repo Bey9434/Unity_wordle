@@ -1,0 +1,34 @@
+name: Unity CI/CD
+
+on:
+  push:
+    branches:
+      - main # または使用するブランチ
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Unity
+        uses: game-ci/setup-unity@v1
+        with:
+          unityVersion: 2020.3.x # Unityのバージョンを指定
+
+      - name: Build and Test Unity project
+        run: |
+          # Unityプロジェクトのビルドコマンドを実行
+          # 例: Unityのコマンドラインでビルドする場合
+          # Unity -batchmode -projectPath /path/to/project -executeMethod MyBuildScript.Build
+          # テストコマンドを実行
+          # 例: Unity Test Runnerを使用する場合
+          # Unity -batchmode -projectPath /path/to/project -runTests -testPlatform editmode
+          
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: BuildArtifacts
+          path: /path/to/build/directory # ビルドした成果物があるディレクトリのパスを指定
