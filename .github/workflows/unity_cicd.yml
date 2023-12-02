@@ -16,7 +16,7 @@ jobs:
       - name: Set up Unity
         uses: game-ci/setup-unity@v1
         with:
-          unityVersion: 2020.3.x # Unityのバージョンを指定
+          unityVersion: 2022.3.7f # Unityのバージョンを指定
 
       - name: Build and Test Unity project
         run: |
