@@ -22,10 +22,10 @@ jobs:
         run: |
           # Unityプロジェクトのビルドコマンドを実行
           # 例: Unityのコマンドラインでビルドする場合
-          # Unity -batchmode -projectPath /path/to/project -executeMethod MyBuildScript.Build
+          unity -batchmode -projectPath /path/to/project -executeMethod MyBuildScript.Build
           # テストコマンドを実行
           # 例: Unity Test Runnerを使用する場合
-          # Unity -batchmode -projectPath /path/to/project -runTests -testPlatform editmode
+          unity -batchmode -nographics -projectPath . -runTests -testPlatform editmode -testResults results.xml -logFile
           
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
