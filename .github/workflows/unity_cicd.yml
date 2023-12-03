@@ -29,6 +29,8 @@ jobs:
 
       - name: Set up Unity
         uses: game-ci/setup-unity@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           unityVersion: 2022.3.7f1
 
