@@ -13,5 +13,6 @@ public class BuildScript
 
         BuildPipeline.BuildPlayer(buildPlayerOptions);
         
+        
     }
 }
