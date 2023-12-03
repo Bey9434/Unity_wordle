@@ -9,47 +9,49 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
-    fail-fast: false
-    matrix:
-      targetPlatform:
-          - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
-          - StandaloneWindows # Build a Windows standalone.
-          - StandaloneWindows64 # Build a Windows 64-bit standalone.
-          - StandaloneLinux64 # Build a Linux 64-bit standalone.
-          - iOS # Build an iOS player.
-          - Android # Build an Android .apk standalone app.
-          - WebGL # WebGL.
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          - StandaloneOSX
+          - StandaloneWindows
+          - StandaloneWindows64
+          - StandaloneLinux64
+          - iOS
+          - Android
+          - WebGL
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-         with:
+        with:
           fetch-depth: 0
           lfs: true
 
       - name: Set up Unity
         uses: game-ci/setup-unity@v1
         with:
-          unityVersion: 2022.3.7f # Unityのバージョンを指定
+          unityVersion: 2022.3.7f
 
-        - name: Cache
+      - name: Cache
         uses: actions/cache@v2
         with:
           path: Library
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
-          
-        name: Upload Build
+
+      - name: Build Unity project
+        run: unity -batchmode -projectPath . -buildTarget ${{ matrix.targetPlatform }} -executeMethod BuildGame -quit
+
+      - name: Upload Build
         uses: actions/upload-artifact@v2
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: builds/${{ matrix.targetPlatform }}
-        run:unity -batchmode -projectPath . -buildTarget ${{ matrix.targetPlatform }} -executeMethod BuildGame -quit
-          
-      - name: test Unity project
-        run:
-          unity -batchmode -nographics -projectPath . -runTests -testPlatform editmode -testResults results.xml -logFile
-       - name: Upload Build Artifacts
+
+      - name: Test Unity project
+        run: unity -batchmode -nographics -projectPath . -runTests -testPlatform editmode -testResults results.xml -logFile
+
+      - name: Upload Build Artifacts
         uses: actions/upload-artifact@v2
         with:
           name: Build-${{ matrix.targetPlatform }}
