@@ -11,8 +11,6 @@ public class BuildScript
         buildPlayerOptions.target = BuildTarget.StandaloneWindows64; 
         buildPlayerOptions.options = BuildOptions.None;
 
-        BuildPipeline.BuildPlayer(buildPlayerOptions);
-        
-        
+        BuildPipeline.BuildPlayer(buildPlayerOptions)
     }
 }
