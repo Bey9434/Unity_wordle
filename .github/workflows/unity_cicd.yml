@@ -28,7 +28,7 @@ jobs:
           lfs: true
 
       - name: Set up Unity
-        uses: game-ci/setup-unity@v1
+        uses: game-ci/setup-unity@v2
         with:
           unityVersion: 2022.3.7f
 
