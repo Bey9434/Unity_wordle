@@ -1,3 +1,4 @@
 {
-    "dotnet.defaultSolution": "Unity__wordle.sln"
+    "dotnet.defaultSolution": "Unity__wordle.sln",
+    "dotnet.preferCSharpExtension": true
 }
