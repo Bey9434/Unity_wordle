@@ -44,6 +44,7 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
+        run:unity -batchmode -projectPath . -buildTarget ${{ matrix.targetPlatform }} -executeMethod BuildGame -quit
           
       - name: test Unity project
         run:
