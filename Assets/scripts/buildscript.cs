@@ -12,5 +12,6 @@ public class BuildScript
         buildPlayerOptions.options = BuildOptions.None;
 
         BuildPipeline.BuildPlayer(buildPlayerOptions);
+        
     }
 }
