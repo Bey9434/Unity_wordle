@@ -27,12 +27,7 @@ jobs:
           fetch-depth: 0
           lfs: true
 
-      - name: Set up Unity
-        uses: game-ci/setup-unity@v2
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-        with:
-          unityVersion: 2022.3.7f1
+     
 
       - name: Cache
         uses: actions/cache@v2
