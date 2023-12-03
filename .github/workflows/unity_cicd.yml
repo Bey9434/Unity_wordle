@@ -3,7 +3,7 @@ name: Unity CI/CD
 on:
   push:
     branches:
-      - main # または使用するブランチ
+      - master # または使用するブランチ
 
 jobs:
   build:
