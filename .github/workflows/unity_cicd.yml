@@ -8,27 +8,48 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+    fail-fast: false
+    matrix:
+      targetPlatform:
+          - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+          - StandaloneWindows # Build a Windows standalone.
+          - StandaloneWindows64 # Build a Windows 64-bit standalone.
+          - StandaloneLinux64 # Build a Linux 64-bit standalone.
+          - iOS # Build an iOS player.
+          - Android # Build an Android .apk standalone app.
+          - WebGL # WebGL.
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+         with:
+          fetch-depth: 0
+          lfs: true
 
       - name: Set up Unity
         uses: game-ci/setup-unity@v1
         with:
           unityVersion: 2022.3.7f # Unityのバージョンを指定
 
-      - name: Build and Test Unity project
-        run: |
-          # Unityプロジェクトのビルドコマンドを実行
-          # 例: Unityのコマンドラインでビルドする場合
-          unity -batchmode -projectPath /path/to/project -executeMethod MyBuildScript.Build
-          # テストコマンドを実行
-          # 例: Unity Test Runnerを使用する場合
-          unity -batchmode -nographics -projectPath . -runTests -testPlatform editmode -testResults results.xml -logFile
+        - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}
+          restore-keys: Library-
           
-      - name: Upload build artifacts
+        name: Upload Build
         uses: actions/upload-artifact@v2
         with:
-          name: BuildArtifacts
-          path: /path/to/build/directory # ビルドした成果物があるディレクトリのパスを指定
+          name: Build-${{ matrix.targetPlatform }}
+          path: build/${{ matrix.targetPlatform }}
+          
+      - name: test Unity project
+        run:
+          unity -batchmode -nographics -projectPath . -runTests -testPlatform editmode -testResults results.xml -logFile
+       - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: Build-${{ matrix.targetPlatform }}
+          path: build/${{ matrix.targetPlatform }}
