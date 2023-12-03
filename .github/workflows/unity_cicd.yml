@@ -43,7 +43,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Build-${{ matrix.targetPlatform }}
-          path: build/${{ matrix.targetPlatform }}
+          path: builds/${{ matrix.targetPlatform }}
         run:unity -batchmode -projectPath . -buildTarget ${{ matrix.targetPlatform }} -executeMethod BuildGame -quit
           
       - name: test Unity project
@@ -53,4 +53,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Build-${{ matrix.targetPlatform }}
-          path: build/${{ matrix.targetPlatform }}
+          path: builds/${{ matrix.targetPlatform }}
