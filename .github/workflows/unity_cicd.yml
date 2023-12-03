@@ -20,12 +20,17 @@ jobs:
           - Android
           - WebGL
     
-    steps:
+   steps:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
           lfs: true
+
+      - name: Set up Unity
+        uses: game-ci/setup-unity@v2
+        with:
+          unityVersion: 2022.3.7f1
 
      
 
